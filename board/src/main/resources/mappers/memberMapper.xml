@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.board.mappers.member">
+
+	<!-- 회원 등록 -->
+	<insert id="signUp" parameterType="com.board.domain.MemberVO">
+		insert into tbl_member(id, pwd, nickname) values(#{id}, #{pwd}, #{nickname})
+	</insert>
+	
+	<!-- 로그인 -->
+	<select id="signIn" parameterType="String" resultType="com.board.domain.MemberVO">
+		select id, pwd, nickname from tbl_member
+		where id = #{id}
+	</select>
+
+</mapper>
