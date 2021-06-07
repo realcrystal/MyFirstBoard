@@ -4,17 +4,21 @@
 
 <!-- 로그인 시작 -->
 <c:if test="${empty user}">
-<form action="/member/signIn" method="post" autocomplete="off">
-  <label for="id">아이디: </label>
-  <input type="text" name="id">
-  <label for="pwd">비밀번호: </label>
-  <input type="password" name="pwd">
-  <button type="submit">로그인</button>
+<form class="form-inline" action="/member/signIn" method="post" autocomplete="off">
+  <div class="form-group">
+    <label for="id">아이디: </label>
+    <input class="form-control" type="text" name="id">
+  </div>
+  <div class="form-group">
+    <label for="pwd">비밀번호: </label>
+    <input class="form-control" type="password" name="pwd">
+  </div>
+  <button type="submit" class="btn btn-primary">로그인</button>
 </form>
-<a href="/member/signUp">회원가입</a>
+<p>회원이 아니신가요? <a href="/member/signUp">회원가입</a><p>
 </c:if>
 <c:if test="${!empty user}">
-  <p>${user.nickname}</p>
-  <a href="/member/signOut">로그아웃</a>
+  <p>${user.nickname}님 좋은 하루 되세요! </p>
+  <button onclick="document.location='/member/signOut'">로그아웃</button>
 </c:if>
 <!-- 로그인 끝 -->

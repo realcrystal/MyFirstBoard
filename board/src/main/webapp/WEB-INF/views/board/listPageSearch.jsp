@@ -5,9 +5,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시물 목록</title>
+<title>게시물 목록 + 페이징 + 검색</title>
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
 <body>
+<div class="container">
 <div id="nav">
   <%@ include file="../include/nav.jsp" %>
 </div>
@@ -16,7 +25,7 @@
 </div>
 
 
-<table>
+<table class="table table-hover">
  <thead>
   <tr>
    <th>번호</th>
@@ -66,13 +75,7 @@
     <span>[<a href="/board/listPageSearch?num=${page.endPageNum + 1}${page.searchParams}">다음</a>]</span>
   </c:if>
   
-  
-  <!-- <c:forEach begin="1" end="${pageNum}" var="num">
-  	<span>
-  	  <a href="/board/listPage?num=${num}">${num}</a>
-  	</span>
-  </c:forEach> -->
-  
+  <!-- 검색 시작 -->
   <div>
   	<select name="searchType">
   	  <option value="title" <c:if test="${searchType eq 'title'}">selected</c:if>>제목</option>
@@ -84,7 +87,9 @@
   	<input type="text" name="keyword" value="${keyword}"/>
   	<button type="button" id="searchBtn">검색</button>
   </div>
+  <!-- 검색 끝 -->
 
+</div>
 </div>
 
 <script>

@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.mindrot.jbcrypt.BCrypt;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +18,8 @@ import com.board.service.MemberService;
 @Controller
 @RequestMapping("/member/*")
 public class MemberController {
+
+	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 
 	@Inject
 	MemberService service;
@@ -47,19 +51,19 @@ public class MemberController {
 
 		if (vo == null || !BCrypt.checkpw(pwd, vo.getPwd())) { // 로그인 실패
 			session.setAttribute("user", null);
-			System.out.println("로그인 실패");
+			logger.info("로그인 실패 id:{}", id);
 		} else { // 로그인 성공
 			session.setAttribute("user", vo);
-			System.out.println("로그인 성공");
+			logger.info("회원 {} 로그인", id);
 		}
-
 		return "redirect:" + referer;
+
 	}
 
 	@RequestMapping(value = "/signOut", method = RequestMethod.GET)
 	public String getSignOut(HttpSession session, HttpServletRequest request) throws Exception {
 		String referer = (String) request.getHeader("REFERER");
-		System.out.println(referer);
+		logger.info("회원 {} 로그아웃", ((MemberVO) session.getAttribute("user")).getId());
 		session.invalidate();
 		return "redirect:" + referer;
 	}
