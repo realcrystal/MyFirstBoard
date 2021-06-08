@@ -12,18 +12,18 @@ import com.board.domain.ReplyVO;
 
 @Repository
 public class ReplyDAOImpl implements ReplyDAO {
-	
+
 	@Inject
 	private SqlSession sql;
-	
+
 	private static String namespace = "com.board.mappers.reply";
-	
+
 	// 댓글 조회
 	@Override
 	public List<ReplyVO> list(int bno) throws Exception {
 		return sql.selectList(namespace + ".replyList", bno);
 	}
-	
+
 	// 댓글 하나 조회
 	@Override
 	public ReplyVO view(int bno, int rno) throws Exception {
@@ -47,8 +47,8 @@ public class ReplyDAOImpl implements ReplyDAO {
 
 	// 댓글 삭제
 	@Override
-	public void delete(ReplyVO vo) throws Exception {
-		sql.delete(namespace + ".replyDelete", vo);
+	public void delete(int rno) throws Exception {
+		sql.delete(namespace + ".replyDelete", rno);
 	}
 
 	// 뎃글 갯수

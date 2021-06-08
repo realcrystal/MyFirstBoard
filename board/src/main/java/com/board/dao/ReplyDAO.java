@@ -19,7 +19,7 @@ public interface ReplyDAO {
 	public void modify(ReplyVO vo) throws Exception;
 	
 	// 댓글 삭제
-	public void delete(ReplyVO vo) throws Exception;
+	public void delete(int rno) throws Exception;
 	
 	// 댓글 갯수
 	public int count(int bno) throws Exception;

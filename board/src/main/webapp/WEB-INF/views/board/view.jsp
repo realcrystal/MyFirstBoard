@@ -33,6 +33,7 @@ ${view.content}
       <div>
         <p>${reply.writer} <fmt:formatDate value="${reply.regDate}" pattern="yyyy.MM.dd. HH:mm" />
           <a href="/reply/modify?bno=${view.bno}&rno=${reply.rno}">댓글 수정</a>
+          <a href="/reply/delete?bno=${view.bno}&rno=${reply.rno}">댓글 삭제</a>
         </p>
         <p>${reply.content}</p>
       </div>

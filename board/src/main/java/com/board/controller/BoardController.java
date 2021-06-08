@@ -149,7 +149,10 @@ public class BoardController {
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String getDelete(@RequestParam("bno") int bno) throws Exception {
 		service.delete(bno);
+		// 게시물의 댓글 삭제 -> on delete cascade 로 필요없어짐
+		//replyService.deleteAll(bno);
 		return "redirect:/board/list";
+		
 	}
 
 	// 게시물 목록 + 페이징 + 검색
