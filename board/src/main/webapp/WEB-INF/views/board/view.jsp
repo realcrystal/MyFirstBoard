@@ -47,20 +47,22 @@ ${view.content}
   </c:forEach>
 </ul>
 <hr/>
+<c:if test="${!empty user}">
 <div>
   <form method="post" action="/reply/write">
-    <p>
-      <label>댓글 작성자</label> <input type="text" name="writer" required>
-    </p>
+    <p>${user.nickname}</p>
     <p>
       <textarea rows="5" cols="50" name="content" required></textarea>
     </p>
     <p>
       <input type="hidden" name="bno" value="${view.bno}">
+      <input type="hidden" name="writer" value="${user.nickname}">
+      <input type="hidden" name="userId" value="${user.id}">
       <button type="submit">댓글 작성</button>
     </p>
   </form>
 </div>
+</c:if>
 
 <!-- 댓글 끝 -->
 

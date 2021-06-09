@@ -23,7 +23,7 @@ ON DELETE CASCADE;
 	
 	<!-- 댓글 작성 -->
 	<insert id="replyWrite" parameterType="com.board.domain.ReplyVO">
-		insert into tbl_reply(bno, writer, content) values(#{bno}, #{writer}, #{content})
+		insert into tbl_reply(bno, userId, writer, content) values(#{bno}, #{userId}, #{writer}, #{content})
 	</insert>
 	
 	<!-- 댓글 수정 -->

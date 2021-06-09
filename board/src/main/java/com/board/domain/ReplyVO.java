@@ -12,6 +12,7 @@ public class ReplyVO {
 
 	private int rno;
 	private int bno;
+	private String userId;
 	private String writer;
 	private String content;
 	private Date regDate;
@@ -26,6 +27,12 @@ public class ReplyVO {
 	}
 	public void setBno(int bno) {
 		this.bno = bno;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	public String getWriter() {
 		return writer;
