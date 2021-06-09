@@ -22,11 +22,9 @@
 <form method="post">
 
 <lable>제목</lable>
+<input type="hidden" name="userId" value="${user.id}"/>
 <input type="text" name="title" /><br/>
-
-<lable>작성자</lable>
-<input type="text" name="writer" /><br/>
-
+<input type="hidden" name="writer" value="${user.nickname}"/>
 <lable>내용</lable>
 <textarea cols="50" rows="5" name="content"></textarea><br/>
 

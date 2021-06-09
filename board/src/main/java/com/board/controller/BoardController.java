@@ -116,7 +116,7 @@ public class BoardController {
 		service.write(vo);
 
 		// 모든 작업을 마치고 게시물 목록으로 이동한다
-		return "redirect:/board/list";
+		return "redirect:/board/listPageSearch?num=1";
 	}
 
 	// 게시물 조회

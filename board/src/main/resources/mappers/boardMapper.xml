@@ -19,7 +19,7 @@
 	
 	<!-- 게시물 작성 -->
 	<insert id="write" parameterType="com.board.domain.BoardVO">
-		insert into tbl_board(title, content, writer) values(#{title}, #{content}, #{writer})
+		insert into tbl_board(userId, title, content, writer) values(#{userId}, #{title}, #{content}, #{writer})
 	</insert>
 	
 	<!-- 게시물 조회 -->

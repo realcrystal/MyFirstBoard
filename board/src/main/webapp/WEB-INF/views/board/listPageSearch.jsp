@@ -41,7 +41,7 @@
   	<tr>
   	  <td>${list.bno}</td>
   	  <td>
-  		  <a href="/board/view?bno=${list.bno}">${list.title}</a>
+  		  <a href="/board/view?bno=${list.bno}">${list.title}</a> ()
   	  </td>
   	  <td>
   	  	<fmt:formatDate value="${list.regDate}" pattern="yyyy/MM/dd" />

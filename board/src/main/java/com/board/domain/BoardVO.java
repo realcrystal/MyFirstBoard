@@ -10,6 +10,7 @@ public class BoardVO {
 	 */
 
 	private int bno;
+	private String userId;
 	private String title;
 	private String content;
 	private String writer;
@@ -21,6 +22,14 @@ public class BoardVO {
 
 	public void setBno(int bno) {
 		this.bno = bno;
+	}
+	
+	public String getUserId() {
+		return userId;
+	}
+	
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public String getTitle() {
