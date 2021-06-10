@@ -47,7 +47,7 @@ ${fn:replace(view.content, replaceChar, "<br/>")}
           <a href="/reply/delete?bno=${view.bno}&rno=${reply.rno}">댓글 삭제</a>
         </c:if>
         </p>
-        <p>${reply.content}</p>
+        <p>${fn:replace(reply.content, replaceChar, "<br/>")}</p>
       </div>
     </li>
   </c:forEach>
