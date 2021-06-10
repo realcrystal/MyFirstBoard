@@ -16,6 +16,7 @@ ON DELETE CASCADE;
 		select bno, rno, tbl_member.nickname as writer, content, regDate
 		from tbl_reply, tbl_member
 		where tbl_reply.userId = tbl_member.id and bno=#{bno}
+		order by regDate asc
 	</select>
 	
 	<!-- 댓글 하나 조회 -->
