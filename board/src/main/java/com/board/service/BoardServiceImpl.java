@@ -16,11 +16,6 @@ public class BoardServiceImpl implements BoardService {
 	private BoardDAO dao;
 
 	@Override
-	public List<BoardVO> list() throws Exception {
-		return dao.list();
-	}
-
-	@Override
 	public void write(BoardVO vo) throws Exception {
 		dao.write(vo);
 	}
@@ -43,11 +38,6 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int count() throws Exception {
 		return dao.count();
-	}
-
-	@Override
-	public List<BoardVO> listPage(int displayPost, int postNum) throws Exception {
-		return dao.listPage(displayPost, postNum);
 	}
 
 	@Override

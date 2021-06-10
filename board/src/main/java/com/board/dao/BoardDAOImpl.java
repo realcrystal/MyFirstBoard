@@ -18,11 +18,6 @@ public class BoardDAOImpl implements BoardDAO {
 	
 	private static String namespace = "com.board.mappers.board";
 	
-	// 게시물 목록
-	@Override
-	public List<BoardVO> list() throws Exception {
-		return sql.selectList(namespace + ".list");
-	}
 
 	// 게시물 작성
 	@Override
@@ -52,17 +47,6 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public int count() throws Exception {
 		return sql.selectOne(namespace + ".count");
-	}
-
-	// 게시물 목록 + 페이징
-	@Override
-	public List<BoardVO> listPage(int displayPost, int postNum) throws Exception {
-		HashMap<String, Integer> data = new HashMap<String, Integer>();
-		
-		data.put("displayPost", displayPost);
-		data.put("postNum", postNum);
-		
-		return sql.selectList(namespace + ".listPage", data);
 	}
 	
 	// 게시물 등록 + 페이징 + 검색
