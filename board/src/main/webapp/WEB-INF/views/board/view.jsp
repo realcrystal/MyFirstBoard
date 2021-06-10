@@ -47,6 +47,7 @@ ${view.content}
   </c:forEach>
 </ul>
 <hr/>
+<!-- 댓글 입력창 -->
 <c:if test="${!empty user}">
 <div>
   <form method="post" action="/reply/write">
@@ -56,7 +57,6 @@ ${view.content}
     </p>
     <p>
       <input type="hidden" name="bno" value="${view.bno}">
-      <input type="hidden" name="writer" value="${user.nickname}">
       <input type="hidden" name="userId" value="${user.id}">
       <button type="submit">댓글 작성</button>
     </p>

@@ -18,9 +18,6 @@
 <lable>제목</lable>
 <input type="text" name="title" value="${view.title}"/><br/>
 
-<lable>작성자</lable>
-<input type="text" name="writer" value="${view.writer}"/><br/>
-
 <lable>내용</lable>
 <textarea cols="50" rows="5" name="content">${view.content}</textarea><br/>
 

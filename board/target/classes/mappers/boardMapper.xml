@@ -6,30 +6,36 @@
 
 	<!-- 게시물 목록 -->
 	<select id="list" resultType="com.board.domain.BoardVO">
-		select bno, title, content, writer, regDate, viewCnt from tbl_board
+		select bno, title, content, nickname as writer, regDate, viewCnt
+		from tbl_board, tbl_member
+		where tbl_board.userId = tbl_member.id
 	</select>
 	
 	<!-- 게시물 목록 + 페이징 -->
 	<select id="listPage" parameterType="hashMap" resultType="com.board.domain.BoardVO">
-		select bno, title, content, writer, regDate, viewCnt
-		from tbl_board
+		select bno, title, content, nickname as writer, regDate, viewCnt
+		from tbl_board, tbl_member
+		where tbl_board.userId = tbl_member.id
 		order by bno desc
 		limit #{displayPost}, #{postNum}
 	</select>
 	
 	<!-- 게시물 작성 -->
 	<insert id="write" parameterType="com.board.domain.BoardVO">
-		insert into tbl_board(userId, title, content, writer) values(#{userId}, #{title}, #{content}, #{writer})
+		insert into tbl_board(userId, title, content) values(#{userId}, #{title}, #{content})
 	</insert>
 	
 	<!-- 게시물 조회 -->
 	<select id="view" parameterType="int" resultType="com.board.domain.BoardVO">
-		select bno, title, content, writer, regDate, viewCnt from tbl_board where bno=#{bno}
+		select bno, title, content, nickname as writer, regDate, viewCnt
+		from tbl_board, tbl_member
+		where tbl_board.userId = tbl_member.id and bno=#{bno}
 	</select>
 	
 	<!-- 게시물 수정 -->
 	<update id="modify" parameterType="com.board.domain.BoardVO">
-		update tbl_board set title=#{title}, content=#{content}, writer=#{writer} WHERE bno=#{bno}
+		update tbl_board set title=#{title}, content=#{content}
+		WHERE bno=#{bno}
 	</update>
 	
 	<!-- 게사물 삭제 -->
@@ -44,24 +50,26 @@
 	
 	<!-- 게시물 목록 + 페이징 + 검색 -->
 	<select id="listPageSearch" parameterType="hashMap" resultType="com.board.domain.BoardVO">
-	  select bno, title, writer, regDate, viewCnt
-	  from tbl_board
+	  
+	  select bno, title, nickname as writer, regDate, viewCnt
+	  from tbl_board, tbl_member
+	  where tbl_board.userId = tbl_member.id
 	  
 	  <if test='searchType.equals("title")'>
-	    where title like concat('%', #{keyword}, '%')
+	    and title like concat('%', #{keyword}, '%')
 	  </if>
 	  
 	  <if test='searchType.equals("content")'>
-	    where content like concat('%', #{keyword}, '%')
+	    and content like concat('%', #{keyword}, '%')
 	  </if>
 	  
 	  <if test='searchType.equals("title_content")'>
-	    where title like concat('%', #{keyword}, '%')
+	    and title like concat('%', #{keyword}, '%')
 	    or content like concat('%', #{keyword}, '%')
 	  </if>
 	  
 	  <if test='searchType.equals("writer")'>
-	    where writer like concat('%', #{keyword}, '%')
+	    and writer like concat('%', #{keyword}, '%')
 	  </if>
 
 	  order by bno desc

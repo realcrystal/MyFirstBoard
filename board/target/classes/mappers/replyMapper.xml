@@ -13,17 +13,21 @@ ON DELETE CASCADE;
 	
 	<!-- 댓글 목록 조회 -->
 	<select id="replyList" parameterType="int" resultType="com.board.domain.ReplyVO">
-		select bno, rno, writer, content, regDate from tbl_reply where bno=#{bno}
+		select bno, rno, tbl_member.nickname as writer, content, regDate
+		from tbl_reply, tbl_member
+		where tbl_reply.userId = tbl_member.id and bno=#{bno}
 	</select>
 	
 	<!-- 댓글 하나 조회 -->
 	<select id="replyView" parameterType="hashMap" resultType="com.board.domain.ReplyVO">
-		select bno, rno, writer, content, regDate from tbl_reply where rno=#{rno}
+		select bno, rno, tbl_member.nickname as writer, content, regDate
+		from tbl_reply, tbl_member
+		where tbl_reply.userId = tbl_member.id and rno=#{rno}
 	</select>
 	
 	<!-- 댓글 작성 -->
 	<insert id="replyWrite" parameterType="com.board.domain.ReplyVO">
-		insert into tbl_reply(bno, userId, writer, content) values(#{bno}, #{userId}, #{writer}, #{content})
+		insert into tbl_reply(bno, userId, content) values(#{bno}, #{userId}, #{content})
 	</insert>
 	
 	<!-- 댓글 수정 -->
