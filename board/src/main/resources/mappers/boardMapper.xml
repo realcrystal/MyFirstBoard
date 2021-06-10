@@ -3,22 +3,6 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.board.mappers.board">
-
-	<!-- 게시물 목록 -->
-	<select id="list" resultType="com.board.domain.BoardVO">
-		select bno, title, content, nickname as writer, regDate, viewCnt
-		from tbl_board, tbl_member
-		where tbl_board.userId = tbl_member.id
-	</select>
-	
-	<!-- 게시물 목록 + 페이징 -->
-	<select id="listPage" parameterType="hashMap" resultType="com.board.domain.BoardVO">
-		select bno, title, content, nickname as writer, regDate, viewCnt
-		from tbl_board, tbl_member
-		where tbl_board.userId = tbl_member.id
-		order by bno desc
-		limit #{displayPost}, #{postNum}
-	</select>
 	
 	<!-- 게시물 작성 -->
 	<insert id="write" parameterType="com.board.domain.BoardVO">
@@ -72,7 +56,7 @@
 	  <if test='searchType.equals("writer")'>
 	    where writer like concat('%', #{keyword}, '%')
 	  </if>
-	  group by tbl_reply.bno
+	  group by tbl_board.bno
 	  order by tbl_board.bno desc
 	  limit #{displayPost}, #{postNum}
 	</select>
