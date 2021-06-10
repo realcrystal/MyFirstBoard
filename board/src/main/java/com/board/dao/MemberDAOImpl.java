@@ -9,12 +9,12 @@ import com.board.domain.MemberVO;
 
 @Repository
 public class MemberDAOImpl implements MemberDAO {
-	
+
 	@Inject
 	private SqlSession sql;
 
 	private static String namespace = "com.board.mappers.member";
-	
+
 	// 회원 등록
 	@Override
 	public void signUp(MemberVO vo) throws Exception {
@@ -24,6 +24,11 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public MemberVO signIn(String id) throws Exception {
 		return sql.selectOne(namespace + ".signIn", id);
+	}
+
+	@Override
+	public void modifyPwd(MemberVO vo) throws Exception {
+		sql.update(namespace + ".modifyPwd", vo);
 	}
 
 }

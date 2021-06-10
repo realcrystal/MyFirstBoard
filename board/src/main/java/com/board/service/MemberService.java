@@ -9,5 +9,8 @@ public interface MemberService {
 	
 	// 로그인
 	public MemberVO signIn(String id) throws Exception;
+	
+	// 비밀번호 변경
+	public void modifyPwd(MemberVO vo) throws Exception;
 
 }

@@ -20,5 +20,6 @@
 <c:if test="${!empty user}">
   <p>${user.nickname}님 좋은 하루 되세요! </p>
   <button onclick="document.location='/member/signOut'">로그아웃</button>
+  <button onclick="document.location='/member/setting'">설정</button>
 </c:if>
 <!-- 로그인 끝 -->

@@ -24,6 +24,7 @@ public class MemberController {
 	@Inject
 	MemberService service;
 
+	// 회원 가입
 	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
 	public void getSignUp() throws Exception {
 
@@ -37,6 +38,7 @@ public class MemberController {
 		return "redirect:/";
 	}
 
+	// 회원 로그인
 	@RequestMapping(value = "/signIn", method = RequestMethod.GET)
 	public void getSignIn() throws Exception {
 
@@ -60,11 +62,25 @@ public class MemberController {
 
 	}
 
+	// 회원 로그아웃
 	@RequestMapping(value = "/signOut", method = RequestMethod.GET)
 	public String getSignOut(HttpSession session, HttpServletRequest request) throws Exception {
 		String referer = (String) request.getHeader("REFERER");
 		logger.info("회원 {} 로그아웃", ((MemberVO) session.getAttribute("user")).getId());
 		session.invalidate();
 		return "redirect:" + referer;
+	}
+
+	// 회원 비밀번호 변경
+	@RequestMapping(value = "/setting", method = RequestMethod.GET)
+	public void updatePwdGet() throws Exception {
+
+	}
+
+	@RequestMapping(value = "/setting", method = RequestMethod.POST)
+	public void updatePwdPost(MemberVO vo) throws Exception {
+		String hashedPwd = BCrypt.hashpw(vo.getPwd(), BCrypt.gensalt());
+		vo.setPwd(hashedPwd);
+		service.modifyPwd(vo);
 	}
 }
