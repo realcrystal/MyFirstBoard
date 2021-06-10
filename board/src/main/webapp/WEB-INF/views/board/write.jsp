@@ -14,7 +14,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+<div class="container">
 <div id="nav">
   <%@ include file="../include/nav.jsp" %>
 </div>
@@ -30,6 +30,6 @@
 <button type="submit">작성</button>
 
 </form>
-
+</div>
 </body>
 </html>

@@ -1,5 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<% pageContext.setAttribute("replaceChar", "\n"); %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -15,31 +17,35 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+<div class="container">
 <div id="nav">
   <%@ include file="../include/nav.jsp" %>
 </div>
-
+<!-- 게시글 정보 -->
 <h1>${view.title}</h1>
-<lable>작성자: </lable>
-${view.writer} <fmt:formatDate value="${view.regDate}" pattern="yyyy.MM.dd. HH:mm" />
+<p>작성자:${view.writer}&nbsp;&nbsp;<fmt:formatDate value="${view.regDate}" pattern="yyyy.MM.dd. HH:mm" /></p>
+<c:if test="${!empty user && user.id eq view.userId}">
+  <div>
+    <a href="/board/modify?bno=${view.bno}">게시물 수정</a>, <a href="/board/delete?bno=${view.bno}">게시물 삭제</a>
+  </div>
+</c:if>
+
 <hr/>
-${view.content}
+<!-- 게시글 내용 -->
+${fn:replace(view.content, replaceChar, "<br/>")}
 <hr/>
-<div>
-  <a href="/board/modify?bno=${view.bno}">게시물 수정</a>, <a href="/board/delete?bno=${view.bno}">게시물 삭제</a>
-</div>
 
 <!-- 댓글 시작 -->
-
-<hr/>
+<!-- 댓글 목록 시작-->
 <ul>
   <c:forEach items="${reply}" var="reply">
   	<li>
       <div>
         <p><b>${reply.writer}</b> <fmt:formatDate value="${reply.regDate}" pattern="yyyy.MM.dd. HH:mm" />
+        <c:if test="${!empty user && user.id eq reply.userId}">
           <a href="/reply/modify?bno=${view.bno}&rno=${reply.rno}">댓글 수정</a>
           <a href="/reply/delete?bno=${view.bno}&rno=${reply.rno}">댓글 삭제</a>
+        </c:if>
         </p>
         <p>${reply.content}</p>
       </div>
@@ -47,6 +53,7 @@ ${view.content}
   </c:forEach>
 </ul>
 <hr/>
+<!-- 댓글 목록 끝 -->
 <!-- 댓글 입력창 -->
 <c:if test="${!empty user}">
 <div>
@@ -65,6 +72,6 @@ ${view.content}
 </c:if>
 
 <!-- 댓글 끝 -->
-
+</div>
 </body>
 </html>

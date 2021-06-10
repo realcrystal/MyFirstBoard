@@ -27,7 +27,7 @@
 	
 	<!-- 게시물 조회 -->
 	<select id="view" parameterType="int" resultType="com.board.domain.BoardVO">
-		select bno, title, content, nickname as writer, regDate, viewCnt
+		select bno, title, content, userId, nickname as writer, regDate, viewCnt
 		from tbl_board, tbl_member
 		where tbl_board.userId = tbl_member.id and bno=#{bno}
 	</select>

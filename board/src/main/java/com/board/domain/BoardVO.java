@@ -15,6 +15,8 @@ public class BoardVO {
 	private String content;
 	private String writer;
 	private Date regDate;
+	private int viewCnt;
+	private int commentCnt;
 
 	public int getBno() {
 		return bno;
@@ -72,5 +74,13 @@ public class BoardVO {
 		this.viewCnt = viewCnt;
 	}
 
-	private int viewCnt;
+	public int getCommentCnt() {
+		return commentCnt;
+	}
+
+	public void setCommentCnt(int commentCnt) {
+		this.commentCnt = commentCnt;
+	}
+	
+
 }
